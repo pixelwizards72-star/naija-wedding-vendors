@@ -10,7 +10,8 @@ export default function AdminPortal({
   onUpdateVendorStatus,
   onDeleteVendor,
   onAddVendor,
-  onBackToMarketplace
+  onBackToMarketplace,
+  onToggleFeatured
 }) {
   const [passcode, setPasscode] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(true); // Default true for demo
@@ -32,6 +33,7 @@ export default function AdminPortal({
   const approvedCount = vendors.filter(v => (v.status || 'approved') === 'approved').length;
   const pendingCount = vendors.filter(v => v.status === 'pending').length;
   const suspendedCount = vendors.filter(v => v.status === 'suspended').length;
+  const featuredCount = vendors.filter(v => v.featured).length;
 
   // Filtered list
   const filteredVendors = vendors.filter(v => {
@@ -58,7 +60,7 @@ export default function AdminPortal({
             <Lock className="w-8 h-8" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold font-serif text-slate-900">OwambeHub Admin Portal</h2>
+            <h2 className="text-2xl font-bold font-serif text-slate-900 font-serif">Party Vendors Admin Portal</h2>
             <p className="text-xs text-slate-500 mt-1">Enter passcode to manage & verify Nigerian vendors</p>
           </div>
           
@@ -98,103 +100,60 @@ export default function AdminPortal({
             </button>
             <h1 className="text-2xl sm:text-3xl font-light font-serif text-slate-900 flex items-center space-x-2">
               <ShieldCheck className="w-7 h-7 text-violet-700 stroke-[1.5]" />
-              <span>Party Vendors Admin Control Panel</span>
+              <span>Party Vendors Admin Portal</span>
             </h1>
           </div>
-          <p className="text-xs text-slate-500 mt-1 pl-9">
-            Review submitted CAC documents, approve pending registrations, suspend non-compliant profiles, or remove vendors.
+          <p className="text-xs text-slate-500 mt-1">
+            Review vendor registrations, verify CAC registration numbers, and manage Featured Spotlight listings.
           </p>
         </div>
 
-        <button
-          onClick={onBackToMarketplace}
-          className="px-4 py-2 rounded-full border border-violet-600 text-violet-800 text-xs font-bold hover:bg-violet-50 transition-all shrink-0"
-        >
-          ← Return to Public Website View
-        </button>
+        <div className="flex items-center space-x-2">
+          <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-200">
+            ✓ Admin Session Active
+          </span>
+        </div>
       </div>
 
-      {/* Metric Cards (Inspired by Multi-Color Dashboard Layout) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        
-        {/* Total Registered Card */}
-        <div 
-          onClick={() => setActiveStatusTab('all')}
-          className={`p-5 rounded-3xl cursor-pointer border transition-all ${
-            activeStatusTab === 'all' 
-              ? 'bg-violet-700 text-white border-violet-700 shadow-md scale-105' 
-              : 'bg-white text-slate-900 border-purple-100 hover:bg-purple-50/50'
-          }`}
-        >
-          <div className="text-xs font-bold uppercase tracking-wider opacity-80">Total Enrolled</div>
-          <div className="text-3xl font-extrabold font-serif mt-1">{totalCount}</div>
-          <span className="text-[11px] opacity-75">All registered vendor profiles</span>
+      {/* Metrics Cards Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
+        <div className="bg-white p-4 rounded-2xl border border-purple-100 shadow-xs">
+          <span className="text-xs text-slate-500 font-semibold block">Total Vendors</span>
+          <span className="text-2xl font-black text-slate-900">{totalCount}</span>
         </div>
-
-        {/* Pending Review Card */}
-        <div 
-          onClick={() => setActiveStatusTab('pending')}
-          className={`p-5 rounded-3xl cursor-pointer border transition-all ${
-            activeStatusTab === 'pending' 
-              ? 'bg-amber-500 text-white border-amber-500 shadow-md scale-105' 
-              : 'bg-white text-slate-900 border-amber-200 hover:bg-amber-50/50'
-          }`}
-        >
-          <div className="text-xs font-bold uppercase tracking-wider opacity-80 flex items-center justify-between">
-            <span>Pending Review</span>
-            {pendingCount > 0 && (
-              <span className="px-2 py-0.5 rounded-full bg-amber-600 text-white text-[10px] font-extrabold animate-pulse">
-                Action Required
-              </span>
-            )}
-          </div>
-          <div className="text-3xl font-extrabold font-serif mt-1">{pendingCount}</div>
-          <span className="text-[11px] opacity-75">Awaiting CAC & ID verification</span>
+        <div className="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+          <span className="text-xs text-emerald-700 font-semibold block">Approved Live</span>
+          <span className="text-2xl font-black text-emerald-900">{approvedCount}</span>
         </div>
-
-        {/* Approved Live Card */}
-        <div 
-          onClick={() => setActiveStatusTab('approved')}
-          className={`p-5 rounded-3xl cursor-pointer border transition-all ${
-            activeStatusTab === 'approved' 
-              ? 'bg-emerald-600 text-white border-emerald-600 shadow-md scale-105' 
-              : 'bg-white text-slate-900 border-emerald-200 hover:bg-emerald-50/50'
-          }`}
-        >
-          <div className="text-xs font-bold uppercase tracking-wider opacity-80">Live on Website</div>
-          <div className="text-3xl font-extrabold font-serif mt-1">{approvedCount}</div>
-          <span className="text-[11px] opacity-75">Approved & visible to public</span>
+        <div className="bg-amber-50 p-4 rounded-2xl border border-amber-100">
+          <span className="text-xs text-amber-700 font-semibold block">Pending Approval</span>
+          <span className="text-2xl font-black text-amber-900">{pendingCount}</span>
         </div>
-
-        {/* Suspended Card */}
-        <div 
-          onClick={() => setActiveStatusTab('suspended')}
-          className={`p-5 rounded-3xl cursor-pointer border transition-all ${
-            activeStatusTab === 'suspended' 
-              ? 'bg-rose-600 text-white border-rose-600 shadow-md scale-105' 
-              : 'bg-white text-slate-900 border-rose-200 hover:bg-rose-50/50'
-          }`}
-        >
-          <div className="text-xs font-bold uppercase tracking-wider opacity-80">Suspended</div>
-          <div className="text-3xl font-extrabold font-serif mt-1">{suspendedCount}</div>
-          <span className="text-[11px] opacity-75">Hidden from public marketplace</span>
+        <div className="bg-rose-50 p-4 rounded-2xl border border-rose-100">
+          <span className="text-xs text-rose-700 font-semibold block">Suspended</span>
+          <span className="text-2xl font-black text-rose-900">{suspendedCount}</span>
         </div>
-
+        <div className="bg-violet-50 p-4 rounded-2xl border border-violet-100">
+          <span className="text-xs text-violet-700 font-semibold block">Featured Spotlight</span>
+          <span className="text-2xl font-black text-violet-950">★ {featuredCount}</span>
+        </div>
       </div>
 
       {/* Main Vendor Management Table */}
-      <div className="bg-white rounded-3xl border border-purple-100 shadow-md overflow-hidden space-y-4 p-6">
+      <div className="bg-white rounded-3xl border border-purple-100 shadow-sm overflow-hidden">
         
         {/* Table Filter Controls */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center space-x-2">
-            {['all', 'pending', 'approved', 'suspended'].map((tab) => (
+        <div className="p-4 sm:p-6 border-b border-purple-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+          
+          {/* Status Tabs */}
+          <div className="flex items-center space-x-1 overflow-x-auto w-full sm:w-auto">
+            {['all', 'approved', 'pending', 'suspended'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveStatusTab(tab)}
-                className={`px-4 py-2 rounded-full text-xs font-bold capitalize transition-all ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold capitalize transition-all whitespace-nowrap ${
                   activeStatusTab === tab
-                    ? 'bg-violet-700 text-white shadow-sm'
+                    ? 'bg-violet-700 text-white shadow-xs'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
@@ -224,6 +183,7 @@ export default function AdminPortal({
                 <th className="py-3.5 px-4">Vendor Details</th>
                 <th className="py-3.5 px-4">Category & Location</th>
                 <th className="py-3.5 px-4">CAC Registration</th>
+                <th className="py-3.5 px-4">Featured Status</th>
                 <th className="py-3.5 px-4">Status</th>
                 <th className="py-3.5 px-4 text-right">Admin Actions</th>
               </tr>
@@ -272,6 +232,27 @@ export default function AdminPortal({
                         </div>
                       ) : (
                         <span className="text-slate-400 italic">No CAC Document</span>
+                      )}
+                    </td>
+
+                    {/* Featured Status Toggle */}
+                    <td className="py-4 px-4">
+                      {vendor.featured ? (
+                        <button
+                          onClick={() => onToggleFeatured && onToggleFeatured(vendor.id)}
+                          className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full bg-amber-400 text-slate-950 text-[10px] font-bold shadow-xs hover:bg-amber-500 transition-all cursor-pointer"
+                          title="Click to remove from Featured Homepage Spotlight"
+                        >
+                          <span>★ Featured</span>
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => onToggleFeatured && onToggleFeatured(vendor.id)}
+                          className="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 hover:bg-amber-100 hover:text-amber-900 text-[10px] font-bold transition-all cursor-pointer"
+                          title="Click to promote vendor to Featured Spotlight"
+                        >
+                          + Make Featured
+                        </button>
                       )}
                     </td>
 
