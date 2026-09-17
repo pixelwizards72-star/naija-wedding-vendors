@@ -29,12 +29,12 @@ export default function HeroSection({
           <span className="font-extralight tracking-wide">CAC Registered & Identity Verified Nigerian Event Vendors</span>
         </div>
 
-        {/* Hero Title - Regular & Light Weight */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-light tracking-tight font-serif text-white max-w-4xl mx-auto leading-tight">
-          Find & Book Verified Event & Wedding Vendors in <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 bg-clip-text text-transparent font-normal">Nigeria</span>
+        {/* Hero Title - Black Heavy Font Weight 900 */}
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-tight">
+          Find & Book Verified Event & Wedding Vendors in <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 bg-clip-text text-transparent font-black">Nigeria</span>
         </h1>
 
-        {/* Smart Multi-Filter Search Bar - Poppins Thin & Regular Styling */}
+        {/* Smart Multi-Filter Search Bar */}
         <div className="mt-8 bg-white p-4 sm:p-5 rounded-3xl shadow-2xl text-slate-800 border-2 border-violet-100 max-w-5xl mx-auto text-left">
           
           {/* Main Keyword Input */}
