@@ -60,17 +60,17 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signup' }) {
             <div className="relative z-10 bg-slate-950/40 backdrop-blur-xl p-6 rounded-2xl border border-white/10 my-auto shadow-2xl">
               
               {/* Brand Pill */}
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-[11px] font-extrabold uppercase tracking-widest mb-6">
-                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-                <span>OWAMBEHUB NETWORK</span>
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-[11px] font-light uppercase tracking-widest mb-6">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300 stroke-[1.5]" />
+                <span>PARTY VENDORS NETWORK</span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl font-extrabold font-serif leading-tight text-white mb-3">
-                {mode === 'signup' ? 'We are Invite only right now.' : 'Welcome back to OwambeHub.'}
+              <h2 className="text-2xl sm:text-3xl font-light font-serif leading-tight text-white mb-3">
+                {mode === 'signup' ? 'Join Nigeria\'s Premier Event Network.' : 'Welcome back to Party Vendors.'}
               </h2>
 
               <p className="text-xs text-emerald-100 font-light leading-relaxed mb-6">
-                10,000+ planners & CAC verified Nigerian vendors have joined our network. We invite you to join the tribe.
+                Thousands of planners & CAC verified Nigerian vendors across Akwa Ibom & 36 states have joined our network.
               </p>
 
               {/* Bottom Toggle Prompt */}
