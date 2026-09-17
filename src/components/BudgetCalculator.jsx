@@ -67,9 +67,9 @@ export default function BudgetCalculator() {
   ];
 
   const handleCopyBreakdown = () => {
-    const text = `Owambe Event Budget Estimate (${formatNaira(totalBudget)}):\n\n` +
+    const text = `Event Budget Estimate (${formatNaira(totalBudget)}):\n\n` +
       budgetBreakdown.map(b => `• ${b.category} (${b.percentage}%): ${formatNaira(b.amount)}`).join('\n') +
-      `\n\nGenerated via OwambeHub Nigeria`;
+      `\n\nGenerated via Party Vendors Nigeria (Uyo, Akwa Ibom HQ)`;
     
     navigator.clipboard.writeText(text);
     setCopied(true);
