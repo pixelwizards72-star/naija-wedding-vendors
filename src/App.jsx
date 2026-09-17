@@ -9,6 +9,7 @@ import VerificationSection from './components/VerificationSection';
 import VendorRegistrationModal from './components/VendorRegistrationModal';
 import AuthModal from './components/AuthModal';
 import AdminPortal from './components/AdminPortal';
+import FeaturedUpgradeModal from './components/FeaturedUpgradeModal';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 
@@ -38,6 +39,8 @@ export default function App() {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState('signup');
+  const [isFeaturedModalOpen, setIsFeaturedModalOpen] = useState(false);
+  const [featuredModalVendorId, setFeaturedModalVendorId] = useState(null);
 
   // Listen for admin portal footer trigger
   React.useEffect(() => {
@@ -87,6 +90,35 @@ export default function App() {
   // Admin delete vendor handler
   const handleDeleteVendor = (vendorId) => {
     setVendorsList(prev => prev.filter(v => v.id !== vendorId));
+  };
+
+  // Featured Vendor Activation Handler (from payment checkout modal)
+  const handleActivateFeatured = ({ vendorId, plan, gateway, expiryDate }) => {
+    setVendorsList(prev => prev.map(v => {
+      if (v.id === vendorId) {
+        return {
+          ...v,
+          featured: true,
+          featuredPlan: plan.name,
+          featuredUntil: expiryDate,
+          featuredPaymentMethod: gateway
+        };
+      }
+      return v;
+    }));
+  };
+
+  // Toggle Featured status manually in Admin Portal
+  const handleToggleFeatured = (vendorId) => {
+    setVendorsList(prev => prev.map(v => {
+      if (v.id === vendorId) {
+        return {
+          ...v,
+          featured: !v.featured
+        };
+      }
+      return v;
+    }));
   };
 
   // Public Marketplace Filtered Vendors (Strictly ONLY 'approved' status vendors!)
@@ -162,6 +194,7 @@ export default function App() {
           setAuthModalMode(mode);
           setIsAuthModalOpen(true);
         }}
+        onOpenFeaturedModal={() => setIsFeaturedModalOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -196,6 +229,7 @@ export default function App() {
               onSelectVendor={(v) => setSelectedVendorModal(v)}
               onQuoteClick={(v) => setSelectedVendorModal(v)}
               onResetFilters={handleResetFilters}
+              onOpenFeaturedModal={() => setIsFeaturedModalOpen(true)}
             />
 
             <VerificationSection />
@@ -226,6 +260,7 @@ export default function App() {
             onDeleteVendor={handleDeleteVendor}
             onAddVendor={handleAddVendor}
             onBackToMarketplace={() => setActiveTab('marketplace')}
+            onToggleFeatured={handleToggleFeatured}
           />
         )}
 
@@ -255,6 +290,14 @@ export default function App() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         initialMode={authModalMode}
+      />
+
+      <FeaturedUpgradeModal
+        isOpen={isFeaturedModalOpen}
+        onClose={() => setIsFeaturedModalOpen(false)}
+        vendors={vendorsList.filter(v => (v.status || 'approved') === 'approved')}
+        selectedVendorId={featuredModalVendorId}
+        onActivateFeatured={handleActivateFeatured}
       />
 
     </div>
