@@ -27,7 +27,11 @@ export default function VendorCard({
   return (
     <div 
       onClick={() => onSelectVendor(vendor)}
-      className="group bg-white rounded-3xl border border-purple-100 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer relative transform hover:-translate-y-1"
+      className={`group bg-white rounded-3xl border transition-all duration-300 flex flex-col justify-between overflow-hidden cursor-pointer relative transform hover:-translate-y-1 ${
+        vendor.featured 
+          ? 'border-2 border-amber-400/80 shadow-lg shadow-amber-400/10 hover:shadow-2xl hover:shadow-amber-400/20' 
+          : 'border-purple-100 shadow-sm hover:shadow-2xl'
+      }`}
     >
       <div>
         {/* Cover Image Container */}
@@ -41,6 +45,11 @@ export default function VendorCard({
 
           {/* Badges on Image - Extra Small & Compact */}
           <div className="absolute top-2 left-2 flex flex-wrap gap-1 z-10 max-w-[calc(100%-3rem)]">
+            {vendor.featured && (
+              <span className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-[9px] font-bold shadow-xs uppercase tracking-wider flex items-center space-x-1 border border-amber-300">
+                <span>★ Featured</span>
+              </span>
+            )}
             {vendor.verified && (
               <span className="px-2 py-0.5 rounded-full bg-violet-700/90 backdrop-blur-md text-white text-[9px] font-normal shadow-xs border border-violet-400/40">
                 Verified Vendor
