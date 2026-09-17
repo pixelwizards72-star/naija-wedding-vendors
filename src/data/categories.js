@@ -3,20 +3,20 @@ export const CATEGORIES = [
     id: "all",
     name: "All Categories",
     icon: "Sparkles",
-    description: "Browse verified event vendors across Nigeria"
+    description: "Browse verified event vendors across Akwa Ibom & Nigeria"
   },
   {
     id: "catering",
-    name: "Catering & Party Jollof",
+    name: "Catering, Party Jollof & Native Soups",
     icon: "Utensils",
-    description: "Authentic Nigerian party Jollof, gourmet swallows, live cooking stations & BBQ",
-    popularTag: "Popular in Lagos & Abuja"
+    description: "Afang, Edikang Ikong, Ekpang Nkwukwo, party Jollof, gourmet swallows & BBQ",
+    popularTag: "Hot Zone in Uyo & Lagos"
   },
   {
     id: "alaga-mc",
-    name: "Alaga & Event MCs",
+    name: "Event MCs & Cultural Hosts",
     icon: "Mic",
-    description: "Yoruba Alaga Idimu/Ijoko, Igbo Traditional MCs, Hausa Wedding Masters & Standup MCs",
+    description: "Akwa Ibom Cultural MCs, Yoruba Alaga Idimu/Ijoko, Igbo Traditional MCs & Standup MCs",
     popularTag: "Traditional Wedding Essential"
   },
   {
@@ -38,7 +38,7 @@ export const CATEGORIES = [
     name: "Decor, Styling & Lighting",
     icon: "Flower2",
     description: "Luxury marquee styling, stage backdrops, pyrotechnics & flower arches",
-    popularTag: "Owambe Transformation"
+    popularTag: "Event Transformation"
   },
   {
     id: "cakes-desserts",
@@ -79,7 +79,7 @@ export const CATEGORIES = [
     id: "venues-marquees",
     name: "Venues & Marquee Halls",
     icon: "Building2",
-    description: "AC marquee halls, outdoor gardens, beach venues, conference centers in Lagos & Abuja",
+    description: "AC marquee halls, outdoor gardens, beach venues, conference centers in Uyo & nationwide",
     popularTag: "Capacity 200 - 5,000"
   },
   {
@@ -92,17 +92,54 @@ export const CATEGORIES = [
 ];
 
 export const LOCATIONS = [
-  { id: "all", label: "All Nigeria Locations" },
+  { id: "all", label: "All Nigeria Locations (HQ: Uyo, Akwa Ibom)" },
+  
+  // Akwa Ibom Hot Zone (Main Operations Base)
+  { id: "uyo-central", label: "🔥 Akwa Ibom - Uyo (Operational HQ)" },
+  { id: "eket", label: "🔥 Akwa Ibom - Eket" },
+  { id: "ikot-ekpene", label: "🔥 Akwa Ibom - Ikot Ekpene" },
+  { id: "oron", label: "Akwa Ibom - Oron / Ibiono Ibom" },
+
+  // Major Hot Zones
   { id: "lagos-lekki", label: "Lagos - Lekki / Victoria Island / Ikoyi" },
   { id: "lagos-ikeja", label: "Lagos - Ikeja / Maryland / Opebi" },
   { id: "lagos-mainland", label: "Lagos - Yaba / Surulere / FESTAC" },
   { id: "abuja-central", label: "Abuja - Maitama / Asokoro / Wuse 2" },
   { id: "abuja-outer", label: "Abuja - Gwarinpa / Lokogama / Lugbe" },
-  { id: "port-harcourt", label: "Port Harcourt - GRA / Trans Amadi" },
-  { id: "ibadan", label: "Ibadan - Bodija / Oluyole / Ring Road" },
+  { id: "port-harcourt", label: "Rivers - Port Harcourt (GRA / Trans Amadi)" },
+  { id: "ibadan", label: "Oyo - Ibadan (Bodija / Ring Road)" },
+  { id: "calabar", label: "Cross River - Calabar" },
   { id: "enugu", label: "Enugu - Independence Layout" },
-  { id: "benin", label: "Benin City - GRA" },
-  { id: "kano", label: "Kano City" }
+  { id: "benin", label: "Edo - Benin City (GRA)" },
+  { id: "warri-asaba", label: "Delta - Asaba / Warri" },
+  { id: "owwerri", label: "Imo - Owerri" },
+  { id: "awka-onitsha", label: "Anambra - Awka / Onitsha" },
+  { id: "umuahia-aba", label: "Abia - Aba / Umuahia" },
+  { id: "yenagoa", label: "Bayelsa - Yenagoa" },
+  { id: "kano", label: "Kano - Kano City" },
+  { id: "kaduna", label: "Kaduna - Kaduna Central" },
+  { id: "jos", label: "Plateau - Jos" },
+  { id: "ilorin", label: "Kwara - Ilorin" },
+  { id: "abeokuta", label: "Ogun - Abeokuta" },
+  { id: "akure", label: "Ondo - Akure" },
+  { id: "osogbo", label: "Osun - Osogbo" },
+  { id: "ado-ekiti", label: "Ekiti - Ado Ekiti" },
+  { id: "makurdi", label: "Benue - Makurdi" },
+  { id: "lokoja", label: "Kogi - Lokoja" },
+  { id: "lfia", label: "Nasarawa - Lafia" },
+  { id: "minna", label: "Niger - Minna" },
+  { id: "abakaliki", label: "Ebonyi - Abakaliki" },
+  { id: "bauchi", label: "Bauchi State" },
+  { id: "gombe", label: "Gombe State" },
+  { id: "yola", label: "Adamawa - Yola" },
+  { id: "jalingo", label: "Taraba State" },
+  { id: "sokoto", label: "Sokoto State" },
+  { id: "katsina", label: "Katsina State" },
+  { id: "gussau", label: "Zamfara State" },
+  { id: "birnin-kebbi", label: "Kebbi State" },
+  { id: "dutse", label: "Jigawa State" },
+  { id: "damaturu", label: "Yobe State" },
+  { id: "maiduguri", label: "Borno - Maiduguri" }
 ];
 
 export const PRICE_TIERS = [
