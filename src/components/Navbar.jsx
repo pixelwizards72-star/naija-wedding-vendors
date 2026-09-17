@@ -8,7 +8,8 @@ export default function Navbar({
   onOpenVendorRegister,
   onOpenFavorites,
   onOpenAuth,
-  onOpenFeaturedModal
+  onOpenFeaturedModal,
+  onOpenVendorDashboard
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
@@ -65,6 +66,19 @@ export default function Navbar({
 
           {/* Right Action Buttons - Regular Font Weight */}
           <div className="hidden sm:flex items-center space-x-2 shrink-0">
+            {/* Vendor Self-Service Portal CTA */}
+            <button
+              onClick={onOpenVendorDashboard}
+              className={`flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                activeTab === 'vendor_dashboard'
+                  ? 'bg-violet-700 text-white shadow-xs'
+                  : 'bg-violet-50 text-violet-800 hover:bg-violet-100 border border-violet-200'
+              }`}
+            >
+              <User className="w-3.5 h-3.5" />
+              <span>Vendor Dashboard</span>
+            </button>
+
             {/* Get Featured Spotlight CTA */}
             <button
               onClick={onOpenFeaturedModal}
@@ -93,7 +107,6 @@ export default function Navbar({
               onClick={() => onOpenAuth('signin')}
               className="px-3.5 py-1.5 rounded-full border border-violet-600 text-violet-700 hover:bg-violet-50 text-xs font-normal transition-all whitespace-nowrap flex items-center space-x-1"
             >
-              <User className="w-3.5 h-3.5 stroke-[1.5]" />
               <span>Sign In</span>
             </button>
 
