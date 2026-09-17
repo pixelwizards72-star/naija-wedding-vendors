@@ -10,17 +10,19 @@ import VendorRegistrationModal from './components/VendorRegistrationModal';
 import AuthModal from './components/AuthModal';
 import AdminPortal from './components/AdminPortal';
 import FeaturedUpgradeModal from './components/FeaturedUpgradeModal';
+import VendorDashboard from './components/VendorDashboard';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 
 import { INITIAL_VENDORS } from './data/vendors';
 
 export default function App() {
-  // Navigation tab state ('marketplace', 'invites', 'budget', 'verification', 'admin')
+  // Navigation tab state ('marketplace', 'invites', 'budget', 'verification', 'admin', 'vendor_dashboard')
   const [activeTab, setActiveTab] = useState('marketplace');
 
   // Vendor Data State
   const [vendorsList, setVendorsList] = useState(INITIAL_VENDORS);
+  const [loggedInVendorId, setLoggedInVendorId] = useState('v-001'); // Default demo vendor
 
   // Search & Filter state
   const [searchQuery, setSearchQuery] = useState('');
@@ -177,6 +179,21 @@ export default function App() {
     return result;
   }, [vendorsList, searchQuery, selectedCategory, selectedLocation, selectedPriceTier, verifiedOnly, showFavoritesOnly, sortBy, favorites]);
 
+  // Vendor Profile Update Handler from Vendor Dashboard
+  const handleUpdateVendorProfile = (vendorId, updatedFields) => {
+    setVendorsList(prev => prev.map(v => {
+      if (v.id === vendorId) {
+        return {
+          ...v,
+          ...updatedFields
+        };
+      }
+      return v;
+    }));
+  };
+
+  const currentVendor = vendorsList.find(v => v.id === loggedInVendorId) || vendorsList[0];
+
   return (
     <div className="min-h-screen flex flex-col bg-purple-50/40 text-slate-800">
       
@@ -195,6 +212,7 @@ export default function App() {
           setIsAuthModalOpen(true);
         }}
         onOpenFeaturedModal={() => setIsFeaturedModalOpen(true)}
+        onOpenVendorDashboard={() => setActiveTab('vendor_dashboard')}
       />
 
       {/* Main Content Area */}
@@ -250,6 +268,17 @@ export default function App() {
         {/* Trust & Safety Verification Tab */}
         {activeTab === 'verification' && (
           <VerificationSection />
+        )}
+
+        {/* Vendor Self-Service Dashboard Tab */}
+        {activeTab === 'vendor_dashboard' && (
+          <VendorDashboard
+            vendor={currentVendor}
+            onUpdateVendorProfile={handleUpdateVendorProfile}
+            onOpenFeaturedModal={() => setIsFeaturedModalOpen(true)}
+            onSignOut={() => setActiveTab('marketplace')}
+            onBackToMarketplace={() => setActiveTab('marketplace')}
+          />
         )}
 
         {/* Admin Portal Tab */}
