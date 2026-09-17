@@ -7,7 +7,8 @@ export default function Navbar({
   favoritesCount, 
   onOpenVendorRegister,
   onOpenFavorites,
-  onOpenAuth
+  onOpenAuth,
+  onOpenFeaturedModal
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
@@ -22,7 +23,7 @@ export default function Navbar({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
-          {/* Brand Logo - Regular Font Weight */}
+          {/* Brand Logo - Party Vendors */}
           <div 
             onClick={() => setActiveTab('marketplace')}
             className="flex items-center space-x-2.5 cursor-pointer group shrink-0"
@@ -31,7 +32,7 @@ export default function Navbar({
               <Sparkles className="w-4 h-4 text-amber-300 stroke-[1.5]" />
             </div>
             <span className="text-xl font-normal tracking-tight bg-gradient-to-r from-violet-950 via-purple-800 to-indigo-950 bg-clip-text text-transparent font-serif whitespace-nowrap">
-              OwambeHub
+              Party Vendors
             </span>
           </div>
 
@@ -64,6 +65,15 @@ export default function Navbar({
 
           {/* Right Action Buttons - Regular Font Weight */}
           <div className="hidden sm:flex items-center space-x-2 shrink-0">
+            {/* Get Featured Spotlight CTA */}
+            <button
+              onClick={onOpenFeaturedModal}
+              className="flex items-center space-x-1 px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 text-slate-900 border border-amber-300 text-xs font-medium transition-all shadow-2xs"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+              <span>Get Featured</span>
+            </button>
+
             {/* Favorites Counter */}
             <button
               onClick={onOpenFavorites}
