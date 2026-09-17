@@ -96,9 +96,9 @@ export default function AdminPortal({
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
-            <h1 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 flex items-center space-x-2">
-              <ShieldCheck className="w-7 h-7 text-violet-700" />
-              <span>OwambeHub Admin Vendor Control Panel</span>
+            <h1 className="text-2xl sm:text-3xl font-light font-serif text-slate-900 flex items-center space-x-2">
+              <ShieldCheck className="w-7 h-7 text-violet-700 stroke-[1.5]" />
+              <span>Party Vendors Admin Control Panel</span>
             </h1>
           </div>
           <p className="text-xs text-slate-500 mt-1 pl-9">
