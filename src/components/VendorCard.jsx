@@ -97,18 +97,9 @@ export default function VendorCard({
             <span>{vendor.locationLabel}</span>
           </div>
 
-          <p className="text-xs text-slate-600 line-clamp-2 font-light leading-relaxed mb-4">
+          <p className="text-xs text-slate-600 line-clamp-2 font-light leading-relaxed mb-2">
             {vendor.tagline || vendor.description}
           </p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1 mb-4">
-            {vendor.tags?.slice(0, 3).map((tag, idx) => (
-              <span key={idx} className="px-2 py-0.5 rounded-md bg-purple-50 text-violet-800 text-[10px] font-light border border-purple-100">
-                #{tag}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
 
