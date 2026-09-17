@@ -76,16 +76,16 @@ export default function VendorRegistrationModal({ onClose, onAddVendor }) {
         <div className="sticky top-0 z-10 bg-white px-6 py-4 border-b border-purple-100 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-xl bg-violet-700 text-white flex items-center justify-center">
-              <PlusCircle className="w-5 h-5" />
+              <PlusCircle className="w-5 h-5 stroke-[1.5]" />
             </div>
             <div>
-              <h3 className="text-lg font-bold font-serif text-slate-900">List Your Business on OwambeHub</h3>
-              <p className="text-xs text-slate-500">Free registration for Nigerian Event & Wedding Vendors</p>
+              <h3 className="text-lg font-normal font-serif text-slate-900">List Your Business on Party Vendors</h3>
+              <p className="text-xs text-slate-500 font-light">Free registration for Nigerian Event & Wedding Vendors (HQ: Uyo, Akwa Ibom)</p>
             </div>
           </div>
 
           <button onClick={onClose} className="p-2 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200">
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5 stroke-[1.5]" />
           </button>
         </div>
 
